@@ -85,3 +85,22 @@ function postLogin(req,res,next){
         return next(error)
      });
 };
+
+function getSignup(req,res,next){
+    res.render('auth/signup',{
+        pageTitle:"Sign Up",
+        path:"/signup",
+        errorMessage:req.flash("error"),
+        oldInput:{
+            email:"",
+            password:"",
+            confirmPassword:"",
+        },
+        validationErrors:[]
+    })
+}
+
+module.exports ={
+    getLogin,
+    postLogin
+}
