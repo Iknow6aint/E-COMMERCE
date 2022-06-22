@@ -5,6 +5,7 @@ const path = require('path');
 const {cloudinary}=require('../utils/cloudinary');
 const streamifier =require('streamifier');
 const { Error } = require("mongoose");
+const productsModels = require("../models/products.models");
 
 
 
@@ -231,10 +232,50 @@ async function postEditProduct (req,res,next){
 
 }
 
+function getProducts(req,res,next){
+    Product.find({userId:req.user._id})
+     .then((product)=>{
+        res.render("admin/products",{
+            prods:productsModels,
+            pageTitle:"Admin Products",
+            path:"/admin/products"
+        })
+     })
+     .catch((err)=>{
+        const error = new Error(err);
+        error.httpStatusCode =500;
+        return next(error);
+     });
+}
+
+function deleteProduct(req,res,next){
+    const prodId = req.params.product;
+    Product.findById(prodId)
+     .then((product)=>{
+        if (!product) {
+            return next(new Error("product not found"));
+        }
+        return deleteFile(product.publicId)
+     })
+     .then((result)=>{
+        console.log("edit and delete success",result)
+        return Product.deleteOne({_id:prodId,userId:req.userId});
+     })
+      .then(()=>{
+        console.log('DESTROYED PRODUCT');
+        res.status(200).json({message:"sucess!"})
+      })
+      .catch((err)=>{
+        res.status(500).json({message:"delete failed"})
+      });
+};
+
 
 module.exports ={
     getAddProducts,
     postAddProducts,
     getEditProduct,
-    postEditProduct
+    postEditProduct,
+    getProducts,
+    deleteProduct
 }
