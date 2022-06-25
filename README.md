@@ -1,6 +1,10 @@
 # E-COMMERCE
 This is an e-comm API that is built with nodejs and express and can be  rendered with a template engine. Database module is mongoose
+
+
 🌟 Features
+
+
 Create, update and edit products
 Secure user registration and authentication
 Secure Payments with Stripe
