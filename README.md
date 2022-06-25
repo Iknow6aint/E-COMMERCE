@@ -2,23 +2,24 @@
 This is an e-comm API that is built with nodejs and express and can be  rendered with a template engine. Database module is mongoose
 
 
-🌟 Features
+<h1>🌟 Features</h1>
+
+<li>Create, update and edit products</li>
+<li>Secure user registration and authentication</li>
+<li>Secure Payments with Stripe</li>
+<li>Fast image upload & optimization with Cloudinary</li>
 
 
-Create, update and edit products
-Secure user registration and authentication
-Secure Payments with Stripe
-Fast image upload & optimization with Cloudinary
-Generate bills in PDF form for every order
+
+<h1>⚙️ Tech Stack</h1>
+
+<li>Node.js</li>
+<li>Express.js</li>
+<li>EJS while testing</li>
+<li>MongoDB</li>
 
 
-⚙️ Tech Stack
-Node.js
-Express.js
-EJS while testing
-MongoDB
-
-Setup Environment Variables
+<h1>Setup Environment Variables</h1>
 You will need to provide your own .env variables, here's how you can do it:
 
 create a new file .env in the root
